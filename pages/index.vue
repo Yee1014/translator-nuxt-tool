@@ -6,8 +6,8 @@
 -->
 <template>
   <div class="translator-page">
-    <NTip class="justify-center" :n="isError ? 'red6 dark:red5' : ''" :icon="isError ? 'carbon:warning-alt' : 'carbon:warning'">
-      Translate {{ isError ? isError : '' }}
+    <NTip class="justify-center" :n="isError ? 'red6 dark:red5' : ''" :icon="isError ? 'carbon:warning-alt' : 'carbon:translate'">
+      {{ isError ? isError : 'Try Translate!' }}
     </NTip>
     <div class="m-auto max-w-6xl p-8 flex gap-6">
       <div class="flex-1">
@@ -42,9 +42,11 @@
             {{ api.label }}
           </NRadio>
         </div>
-        <NButton :disabled="isLoading" @click="handleTranslate">
-          翻译
-        </NButton>
+        <div class="text-center">
+          <NButton icon="carbon:translate" :disabled="isLoading" @click="handleTranslate">
+            翻译
+          </NButton>
+        </div>
       </div>
       <div class="flex-1">
         <div>翻译结果：</div>
