@@ -1,8 +1,10 @@
 # Translator nuxt tool
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+使用[Nuxt 3](https://nuxt.com/docs/getting-started/introduction)搭建，记录使用各种翻译Api！
 
-记录使用各种翻译Api！
+## 翻译Api
+1. 腾讯翻译
+2. 阿里翻译(__无法实现__)
 
 ## Setup
 
