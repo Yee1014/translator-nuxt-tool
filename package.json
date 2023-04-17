@@ -19,6 +19,11 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@alicloud/alimt20181012": "^1.1.0",
+    "@alicloud/openapi-client": "^0.4.5",
+    "@alicloud/tea-console": "^1.0.0",
+    "@alicloud/tea-typescript": "^1.8.0",
+    "@alicloud/tea-util": "^1.4.5",
     "chalk": "^5.2.0",
     "consola": "^3.0.2",
     "tencentcloud-sdk-nodejs": "^4.0.580"

@@ -12,6 +12,15 @@ import { type TextTranslateBatchRequest } from 'tencentcloud-sdk-nodejs/src/serv
 import ora from 'ora'
 import chalk from 'chalk'
 import { info } from './log'
+import { ResultTargetKey, TenTargetKey } from '~/server/utils/types'
+
+const TargetKeyMap: Record<ResultTargetKey, TenTargetKey> = {
+  [ResultTargetKey.EN]: TenTargetKey.EN,
+  [ResultTargetKey.ZH_TW]: TenTargetKey.ZH_TW,
+  [ResultTargetKey.KO]: TenTargetKey.KO,
+  [ResultTargetKey.VI]: TenTargetKey.VI,
+  [ResultTargetKey.RU]: TenTargetKey.RU
+}
 
 const spinner = ora()
 const startSpinner = (): void => {
@@ -101,38 +110,12 @@ export const startTranslateBatch = (target = 'en', textSource: string[] = []): v
   )
 }
 
-// 结果返回的key
-enum ResultTargetKey {
-  EN = 'en-US',
-  ZH_TW = 'zh-HK',
-  KO = 'ko-KR',
-  VI = 'vi-VN',
-  RU = 'ru-RU'
-}
-
-// 腾讯翻译的key
-export enum TargetKey {
-  EN = 'en',
-  ZH_TW = 'zh-TW',
-  KO = 'ko',
-  VI = 'vi',
-  RU = 'ru'
-}
-
-const TargetKeyMap: Record<TargetKey, ResultTargetKey> = {
-  [TargetKey.EN]: ResultTargetKey.EN,
-  [TargetKey.ZH_TW]: ResultTargetKey.ZH_TW,
-  [TargetKey.KO]: ResultTargetKey.KO,
-  [TargetKey.VI]: ResultTargetKey.VI,
-  [TargetKey.RU]: ResultTargetKey.RU
-}
-
 /**
  * 单文本多语言翻译
  * @param textSource
  * @param targets
  */
-export const startMultipleTargetTranslate = async (textSource = '', targets: TargetKey[]): Promise<{ [key in ResultTargetKey]?: string }> => {
+export const startMultipleTargetTranslate = async (textSource = '', targets: ResultTargetKey[]): Promise<{ [key in ResultTargetKey]?: string }> => {
   const result: { [key in ResultTargetKey]?: string } = {}
   info(chalk.blue.bold('翻译: ') + chalk.bold(textSource))
   startSpinner()
@@ -141,28 +124,16 @@ export const startMultipleTargetTranslate = async (textSource = '', targets: Tar
     const params: TextTranslateRequest = {
       SourceText: textSource,
       Source: 'zh',
-      Target: targets[i],
+      Target: TargetKeyMap[targets[i]],
       ProjectId: projectId
     }
     promiseList.push(client.TextTranslate(params))
   }
   const targetRes = await Promise.all(promiseList)
   targetRes.forEach((res) => {
-    const key = res.Target as TargetKey
-    result[TargetKeyMap[key]] = res.TargetText
+    const key = res.Target as ResultTargetKey
+    result[key] = res.TargetText
   })
   stopSpinner(result)
   return result as { [key in ResultTargetKey]: string }
 }
-
-/*
-startMultipleTargetTranslate(
-  '恭喜发财!',
-  [TargetKey.EN, TargetKey.ZH_TW, TargetKey.KO, TargetKey.VI, TargetKey.RU]
-)
-  .then(res => {
-    stopSpinner(res)
-  }).catch(err => {
-    stopSpinner(err, false)
-  })
-*/

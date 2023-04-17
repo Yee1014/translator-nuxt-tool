@@ -23,11 +23,24 @@
             v-for="t in targetKeyOptions"
             :key="t.value"
             v-model="t.checked"
-            n="sky6"
+            n="sky6 dark:sky5"
             :disabled="isLoading"
           >
             {{ t.label }}
           </NCheckbox>
+        </div>
+        <div>翻译器：</div>
+        <div class="flex items-center gap-3 mb-2">
+          <NRadio
+            v-for="api in apiOptions"
+            :key="api.value"
+            v-model="currentApi"
+            n="sky6 dark:sky5"
+            name="name"
+            :value="api.value"
+          >
+            {{ api.label }}
+          </NRadio>
         </div>
         <NButton :disabled="isLoading" @click="handleTranslate">
           翻译
@@ -52,12 +65,17 @@ const isLoading = ref<boolean>(false)
 const translateData = ref<string>('')
 const sourceText = ref<string>('')
 const targetKeyOptions = ref([
-  { label: '英语', value: 'en', checked: true },
-  { label: '繁体', value: 'zh-TW', checked: false },
-  { label: '韩语', value: 'ko', checked: false },
-  { label: '越南语', value: 'vi', checked: false },
-  { label: '俄语', value: 'ru', checked: false }
+  { label: '英语', value: 'en-US', checked: true },
+  { label: '繁体', value: 'zh-HK', checked: false },
+  { label: '韩语', value: 'ko-KR', checked: false },
+  { label: '越南语', value: 'vi-VN', checked: false },
+  { label: '俄语', value: 'ru-RU', checked: false }
 ])
+const apiOptions = ref([
+  { label: '腾讯', value: '' }
+  // { label: '阿里', value: 'ali' }
+])
+const currentApi = ref('')
 const isError = ref('')
 
 async function handleTranslate () {
@@ -79,7 +97,8 @@ async function handleTranslate () {
         method: 'post',
         body: {
           source: sourceText.value,
-          targets
+          targets,
+          translator: currentApi.value
         }
       }
     )
