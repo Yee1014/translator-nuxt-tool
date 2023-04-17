@@ -1,0 +1,26 @@
+{
+  "name": "translator-nuxt-tool",
+  "private": true,
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "dev:mode": "nuxi dev --dotenv .env.staging",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@nuxt/ui": "^0.4.1",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@types/node": "^18.15.11",
+    "eslint": "^8.38.0",
+    "nuxt": "^3.4.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "consola": "^3.0.2",
+    "tencentcloud-sdk-nodejs": "^4.0.580"
+  }
+}
