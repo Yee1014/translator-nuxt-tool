@@ -11,7 +11,7 @@
  */
 export enum ResultTargetKey {
   EN = 'en-US',
-  ZH_TW = 'zh-HK',
+  ZH_HK = 'zh-HK',
   KO = 'ko-KR',
   VI = 'vi-VN',
   RU = 'ru-RU'
@@ -38,5 +38,17 @@ export enum ALiTargetKey {
   ZH_TW = 'zh-tw',
   KO = 'ko',
   VI = 'vi',
+  RU = 'ru'
+}
+
+/**
+ * 百度翻译的key
+ * @link
+ */
+export enum BaiduTargetKey {
+  EN = 'en',
+  CHT = 'cht',
+  KO = 'kor',
+  VI = 'vie',
   RU = 'ru'
 }

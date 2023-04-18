@@ -16,7 +16,7 @@ import { info } from '~/server/utils/log'
 
 const TargetKeyMap: Record<ResultTargetKey, ALiTargetKey> = {
   [ResultTargetKey.EN]: ALiTargetKey.EN,
-  [ResultTargetKey.ZH_TW]: ALiTargetKey.ZH_TW,
+  [ResultTargetKey.ZH_HK]: ALiTargetKey.ZH_TW,
   [ResultTargetKey.KO]: ALiTargetKey.KO,
   [ResultTargetKey.VI]: ALiTargetKey.VI,
   [ResultTargetKey.RU]: ALiTargetKey.RU
@@ -44,7 +44,7 @@ const createClient = (): Alimt => {
  * @param textSource
  * @param targets
  */
-export const startMultipleTargetAliTranslate = async (textSource = '', targets: ResultTargetKey[]) => {
+export const startMultipleTargetAliTranslate = async (textSource = '', targets: ResultTargetKey[]):Promise<{ [key in ResultTargetKey]?: string }> => {
   const result: { [key in ResultTargetKey]?: string } = {}
   info(chalk.blue.bold('翻译: ') + chalk.bold(textSource))
   const client = createClient()
@@ -69,5 +69,5 @@ export const startMultipleTargetAliTranslate = async (textSource = '', targets: 
     result[key] = res.TargetText
   })
   Console.log(Util.toJSONString(result))
-  return result
+  return result as { [key in ResultTargetKey]: string }
 }

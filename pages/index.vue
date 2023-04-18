@@ -38,6 +38,7 @@
             n="sky6 dark:sky5"
             name="name"
             :value="api.value"
+            :disabled="isLoading"
           >
             {{ api.label }}
           </NRadio>
@@ -74,7 +75,8 @@ const targetKeyOptions = ref([
   { label: '俄语', value: 'ru-RU', checked: false }
 ])
 const apiOptions = ref([
-  { label: '腾讯', value: '' }
+  { label: '腾讯', value: '' },
+  { label: '百度', value: 'baidu' }
   // { label: '阿里', value: 'ali' }
 ])
 const currentApi = ref('')
@@ -83,15 +85,16 @@ const isError = ref('')
 async function handleTranslate () {
   isError.value = ''
   if (!sourceText.value) {
-    isError.value = 'error: 填写内容！'
+    isError.value = 'Error: 填写内容！'
     return
   }
   const targets = targetKeyOptions.value.filter(i => i.checked).map(i => i.value)
   if (!targets.length) {
-    isError.value = 'error: 请选择翻译语种！'
+    isError.value = 'Error: 请选择翻译语种！'
     return
   }
   isLoading.value = true
+  translateData.value = ''
   try {
     translateData.value = await $fetch(
       '/api/translate',
@@ -107,7 +110,7 @@ async function handleTranslate () {
     isLoading.value = false
   } catch (e) {
     isLoading.value = false
-    isError.value = 'error'
+    isError.value = 'Error: server!'
   }
 }
 </script>

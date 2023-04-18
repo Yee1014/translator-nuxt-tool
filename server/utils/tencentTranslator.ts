@@ -16,7 +16,7 @@ import { ResultTargetKey, TenTargetKey } from '~/server/utils/types'
 
 const TargetKeyMap: Record<ResultTargetKey, TenTargetKey> = {
   [ResultTargetKey.EN]: TenTargetKey.EN,
-  [ResultTargetKey.ZH_TW]: TenTargetKey.ZH_TW,
+  [ResultTargetKey.ZH_HK]: TenTargetKey.ZH_TW,
   [ResultTargetKey.KO]: TenTargetKey.KO,
   [ResultTargetKey.VI]: TenTargetKey.VI,
   [ResultTargetKey.RU]: TenTargetKey.RU

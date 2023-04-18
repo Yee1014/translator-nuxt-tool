@@ -8,9 +8,11 @@ specifiers:
   '@alicloud/tea-util': ^1.4.5
   '@nuxt/ui': ^0.4.1
   '@nuxtjs/eslint-config-typescript': ^12.0.0
+  '@types/crypto-js': ^4.1.1
   '@types/node': ^18.15.11
   chalk: ^5.2.0
   consola: ^3.0.2
+  crypto-js: ^4.1.1
   eslint: ^8.38.0
   nuxt: ^3.4.1
   sass: ^1.62.0
@@ -25,11 +27,13 @@ dependencies:
   '@alicloud/tea-util': 1.4.5
   chalk: 5.2.0
   consola: 3.0.2
+  crypto-js: 4.1.1
   tencentcloud-sdk-nodejs: 4.0.580
 
 devDependencies:
   '@nuxt/ui': 0.4.1_nuxt@3.4.1
   '@nuxtjs/eslint-config-typescript': 12.0.0_voubu7prgxjfsfbgx5d4sqnwiy
+  '@types/crypto-js': 4.1.1
   '@types/node': 18.15.11
   eslint: 8.38.0
   nuxt: 3.4.1_zrtctp5ft4cbzfmbxkm43pdatq
@@ -1407,6 +1411,10 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
+    dev: true
+
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
@@ -2669,6 +2677,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /css-declaration-sorter/6.4.0_postcss@8.4.21:
     resolution: {integrity: sha512-jDfsatwWMWN0MODAFuHszfjphEXfNw9JUAhmY4pLu3TyTU+ohUpsbVtbU+1MZn4a47D9kqh03i4eyOm+74+zew==}
