@@ -13,9 +13,9 @@ export default defineEventHandler(async (event) => {
   console.log('[api] /translate', body)
   if (body.translator === 'ali') {
     return await startMultipleTargetAliTranslate(body.source, body.targets)
-  }
-  if (body.translator === 'baidu') {
+  } else if (body.translator === 'baidu') {
     return await startMultipleTargetBaiduTranslate(body.source, body.targets)
+  } else if (body.translator === 'tencent') {
+    return await startMultipleTargetTranslate(body.source, body.targets)
   }
-  return await startMultipleTargetTranslate(body.source, body.targets)
 })

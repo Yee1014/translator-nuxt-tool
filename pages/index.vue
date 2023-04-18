@@ -38,7 +38,7 @@
             n="sky6 dark:sky5"
             name="name"
             :value="api.value"
-            :disabled="isLoading"
+            :disabled="api.disabled || isLoading"
           >
             {{ api.label }}
           </NRadio>
@@ -64,20 +64,28 @@
 </template>
 
 <script setup lang="ts">
+enum TargetValue {
+  EN = 'en-US',
+  ZH_HK = 'zh-HK',
+  KO = 'ko-KR',
+  VI = 'vi-VN',
+  RU = 'ru-RU'
+}
+
 const isLoading = ref<boolean>(false)
 const translateData = ref<string>('')
 const sourceText = ref<string>('')
 const targetKeyOptions = ref([
-  { label: '英语', value: 'en-US', checked: true },
-  { label: '繁体', value: 'zh-HK', checked: false },
-  { label: '韩语', value: 'ko-KR', checked: false },
-  { label: '越南语', value: 'vi-VN', checked: false },
-  { label: '俄语', value: 'ru-RU', checked: false }
+  { label: '英语', value: TargetValue.EN, checked: true },
+  { label: '繁体', value: TargetValue.ZH_HK, checked: false },
+  { label: '韩语', value: TargetValue.KO, checked: false },
+  { label: '越南语', value: TargetValue.VI, checked: false },
+  { label: '俄语', value: TargetValue.RU, checked: false }
 ])
 const apiOptions = ref([
-  { label: '腾讯', value: '' },
-  { label: '百度', value: 'baidu' }
-  // { label: '阿里', value: 'ali' }
+  { label: '腾讯', value: 'tencent', disabled: false },
+  { label: '百度', value: 'baidu', disabled: false },
+  { label: '阿里', value: 'ali', disabled: true }
 ])
 const currentApi = ref('')
 const isError = ref('')
