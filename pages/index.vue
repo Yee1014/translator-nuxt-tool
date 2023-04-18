@@ -87,7 +87,7 @@ const apiOptions = ref([
   { label: '百度', value: 'baidu', disabled: false },
   { label: '阿里', value: 'ali', disabled: true }
 ])
-const currentApi = ref('')
+const currentApi = ref('tencent')
 const isError = ref('')
 
 async function handleTranslate () {
@@ -99,6 +99,10 @@ async function handleTranslate () {
   const targets = targetKeyOptions.value.filter(i => i.checked).map(i => i.value)
   if (!targets.length) {
     isError.value = 'Error: 请选择翻译语种！'
+    return
+  }
+  if (!currentApi.value) {
+    isError.value = 'Error: 请选择翻译器！'
     return
   }
   isLoading.value = true
