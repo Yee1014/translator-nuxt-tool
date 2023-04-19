@@ -7,6 +7,7 @@
  */
 import CryptoJS from 'crypto-js'
 import chalk from 'chalk'
+import ora from 'ora'
 import { BaiduTargetKey, ResultTargetKey } from '~/server/utils/types'
 import { info } from '~/server/utils/log'
 
@@ -35,6 +36,22 @@ const API_URL = 'https://fanyi-api.baidu.com/api/trans/vip/translate'
 const appid = process.env.NUXT_BAIDU_APP_ID
 const key = process.env.NUXT_BAIDU_APP_KEY
 
+const spinner = ora()
+const startSpinner = (): void => {
+  spinner.start('Start Translate')
+  spinner.color = 'yellow'
+  spinner.text = 'Baidu Translating...'
+}
+const stopSpinner = (data: any, isSuccess = true): void => {
+  if (isSuccess) {
+    spinner.succeed('TencentTranslator Successfully')
+    console.log(data)
+  } else {
+    spinner.fail('TencentTranslator Failed')
+    console.error('error', data)
+  }
+}
+
 const waitOneSecond = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -51,6 +68,7 @@ const waitOneSecond = () => {
 export const startMultipleTargetBaiduTranslate = async (textSource = '', targets: ResultTargetKey[]):Promise<{ [key in ResultTargetKey]?: string }> => {
   const result: { [key in ResultTargetKey]?: string } = {}
   info(chalk.blue.bold('翻译: ') + chalk.bold(textSource))
+  startSpinner()
   // 普通版api，并发请求只能1秒一次
   const length = targets.length
   let count = 0
@@ -81,5 +99,6 @@ export const startMultipleTargetBaiduTranslate = async (textSource = '', targets
     }
   }
   await getResult()
+  stopSpinner(result)
   return result as { [key in ResultTargetKey]: string }
 }
