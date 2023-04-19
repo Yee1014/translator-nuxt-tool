@@ -108,7 +108,7 @@ async function handleTranslate () {
   isLoading.value = true
   translateData.value = ''
   try {
-    translateData.value = await $fetch(
+    const resp = await $fetch(
       '/api/translate',
       {
         method: 'post',
@@ -119,6 +119,7 @@ async function handleTranslate () {
         }
       }
     )
+    translateData.value = { 'zh-CN': sourceText.value, ...resp }
     isLoading.value = false
   } catch (e) {
     isLoading.value = false

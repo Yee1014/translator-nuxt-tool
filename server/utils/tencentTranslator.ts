@@ -130,8 +130,8 @@ export const startMultipleTargetTranslate = async (textSource = '', targets: Res
     promiseList.push(client.TextTranslate(params))
   }
   const targetRes = await Promise.all(promiseList)
-  targetRes.forEach((res) => {
-    const key = res.Target as ResultTargetKey
+  targetRes.forEach((res, index) => {
+    const key = targets[index] as ResultTargetKey
     result[key] = res.TargetText
   })
   stopSpinner(result)
