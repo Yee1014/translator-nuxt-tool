@@ -1,0 +1,16 @@
+{
+  "headerMenuCompanyProfile": {
+    "zh-CN": "公司介绍",
+    "en-US": "Company Introduction",
+    "ko-KR": "회사 소개",
+    "zh-HK": "公司介紹",
+    "vi-VN": "Hồ sơ công ty"
+  },
+  "headerMenuMyCenter": {
+    "zh-CN": "我的",
+    "en-US": "It's mine",
+    "ko-KR": "내 거에요",
+    "zh-HK": "我的",
+    "vi-VN": "của tôi"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "first": {
+    "second": {
+      "third": {
+        "name": "姓名"
+      }
+    }
+  },
+  "helloWorld": "你好世界"
+}

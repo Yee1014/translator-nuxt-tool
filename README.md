@@ -3,22 +3,25 @@
 使用[Nuxt 3](https://nuxt.com/docs/getting-started/introduction)搭建，记录使用各种翻译Api！
 
 ## 翻译Api
+
 1. 腾讯翻译
 2. 阿里翻译(__无法实现__)
 3. 百度翻译
+4. 浏览器翻译文件
 
 ## Setup
 
-Make sure to install the dependencies:
+1. Make sure to install the dependencies:
 
 ```bash
-# pnpm
 pnpm install
 ```
 
+2. create `.env` file
+
 ## Development Server
 
-Start the development server on `http://localhost:3000`
+Start the development server on `http://localhost:3000` or `http://localhost:3000/web`
 
 ```bash
 pnpm run dev
